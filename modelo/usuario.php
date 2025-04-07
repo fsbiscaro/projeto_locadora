@@ -45,6 +45,22 @@ class Usuario implements JsonSerializable
         return $executou;
     }
 
+    public function verifyEmail($email):bool{
+        $conexao = banco::get_conexao();
+        $sql = 'SELECT email_usuario FROM usuario WHERE email_usuario = ?';
+        $prepareSQL = $conexao->prepare($sql);
+        $prepareSQL->bind_param("s", $email);
+        $prepareSQL->execute();
+    
+        $prepareSQL->bind_result($resultadoEmail);
+    
+        if ($prepareSQL->fetch()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function delete() {
         $conexao = Banco::get_conexao();
         $sql = "delete from usuario where id_usuario=?";
