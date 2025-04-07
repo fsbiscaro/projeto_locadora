@@ -24,7 +24,9 @@ $roteador->delete("/usuario/(\d+)", function($id_usuario){
     require_once("controle/usuario/controle_usuario_delete.php");
 });
 
-
+$roteador->post("/login", function(){
+    require_once("controle/usuario/controle_usuario_login.php");
+});
 
 
 

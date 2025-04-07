@@ -110,9 +110,34 @@ class Usuario implements JsonSerializable
                 "telefone_usuario" => $tupla->telefone_usuario,
                 "senha_usuario" => $tupla->senha_usuario
             ];
-            // echo json_encode($resultado, JSON_PRETTY_PRINT);
             return $resultado;
         }
+    }
+
+    public function login(){
+        $conexao = Banco::get_conexao();
+        $sql = "select COUNT(*) AS qtd, id_usuario, nome_usuario, cpf_usuario, data_nascimento_usuario, email_usuario, telefone_usuario FROM usuario WHERE email_usuario=? AND senha_usuario=MD5(?)";
+        $prepareSQL = $conexao->prepare($sql);
+        $prepareSQL->bind_param("ss",
+        $this->email_usuario, 
+        $this->senha_usuario,
+        );
+        $executou = $prepareSQL->execute();
+        $matrizTuplas = $prepareSQL->get_result();
+
+
+        while($tupla = $matrizTuplas->fetch_object()) {
+            if($tupla->qtd==1){
+                $this->setId_usuario($tupla->id_usuario);
+                $this->setNome_usuario($tupla->nome_usuario);
+                $this->setCpf_usuario($tupla->cpf_usuario);
+                $this->setData_nascimento_usuario($tupla->data_nascimento_usuario);
+                $this->setEmail_usuario($tupla->email_usuario);
+                $this->setTelefone_usuario($tupla->telefone_usuario);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
