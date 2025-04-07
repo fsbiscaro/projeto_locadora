@@ -31,10 +31,10 @@ $roteador->post("/login", function(){
 
 
 $roteador->get("/jogos", function(){
-    require_once("controle/jogos/controle_jogos_read.php");
+    require_once("controle/jogos/controle_jogos_read_all.php");
 });
 
-$roteador->get("/jogos/(\d+)", function($id_jogos){
+$roteador->get("/jogos/(\d+)", function($id_jogo){
     require_once("controle/jogos/controle_jogos_read_by_id.php");
 });
 
@@ -43,11 +43,11 @@ $roteador->post("/jogos", function(){
 });
 
 
-$roteador->put("/jogos/(\d+)", function($id_jogos){
+$roteador->put("/jogos/(\d+)", function($id_jogo){
     require_once("controle/jogos/controle_jogos_update.php");
 });
 
-$roteador->delete("/jogos/(\d+)", function($id_jogos){
+$roteador->delete("/jogos/(\d+)", function($id_jogo){
     require_once("controle/jogos/controle_jogos_delete.php");
 });
 
