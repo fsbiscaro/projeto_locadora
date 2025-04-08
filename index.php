@@ -102,10 +102,10 @@ $roteador->delete("/emprestimo_usuario/(\d+)", function($id_emprestimo_usuario){
 
 
 $roteador->get("/categoria_jogo", function(){
-    require_once("controle/categoria_jogo/controle_categoria_jogo_read.php");
+    require_once("controle/categoria_jogo/controle_categoria_jogo_read_all.php");
 });
 
-$roteador->get("/categoria_jogo/(\d+)", function($idcategoria_jogo){
+$roteador->get("/categoria_jogo/(\d+)", function($id_categoria_jogo){
     require_once("controle/categoria_jogo/controle_categoria_jogo_read_by_id.php");
 });
 
@@ -114,11 +114,11 @@ $roteador->post("/categoria_jogo", function(){
 });
 
 
-$roteador->put("/categoria_jogo/(\d+)", function($idcategoria_jogo){
+$roteador->put("/categoria_jogo/(\d+)", function($id_categoria_jogo){
     require_once("controle/categoria_jogo/controle_categoria_jogo_update.php");
 });
 
-$roteador->delete("/categoria_jogo/(\d+)", function($idcategoria_jogo){
+$roteador->delete("/categoria_jogo/(\d+)", function($id_categoria_jogo){
     require_once("controle/categoria_jogo/controle_categoria_jogo_delete.php");
 });
 

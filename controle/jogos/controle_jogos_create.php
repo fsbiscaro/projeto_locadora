@@ -33,7 +33,7 @@ if($meuToken->validarToken($authorization)==true){
             $objResposta->cod = 1;
             $objResposta->msg = "Jogo cadastrado com sucesso";
             $objResposta->status = true;
-            $objResposta->usuario = $objJogo;
+            $objResposta->jogo = $objJogo;
         }else{
             $objResposta->cod = 2;
             $objResposta->msg = "Erro ao cadastrar jogo";
