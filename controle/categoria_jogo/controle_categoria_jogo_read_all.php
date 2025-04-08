@@ -1,6 +1,7 @@
 <?php
 use Firebase\JWT\MeuTokenJWT;
 
+require_once ("modelo/banco.php");
 require_once ("modelo/categoria-jogo.php");
 require_once ("modelo/MeuTokenJWT.php");
 
@@ -16,20 +17,17 @@ if($meuToken->validarToken($authorization)==true){
     $payloadRecuperado = $meuToken->getPayload(); //recuperando payload (dados) do token
     $objResposta->token = $meuToken->gerarToken($payloadRecuperado); //gerando um novo token para que o usuário continue navegando pela aplicação
     
-    $objCategoriaJogo->setId_categoria_jogo($id_categoria_jogo);
+    //lendo as informações de todos os usuários
+    $objCategoriaJogo->readAll();
+    header("Content-Type: application/json");
 
-    if($objCategoriaJogo->delete()==true){
-        header("HTTP/1.1 200");
-        $objResposta->code = 1;
-        $objResposta->msg ="Categoria deletado com sucesso!";
-        $objResposta->status = true;
+    //retornando resposta dependendo do status
+    if($objResposta->status == true){
+        header("HTTP:1.1 201");
     }else{
-        $objResposta->code = 2;
-        $objResposta->msg ="Erro ao deletar categoria!";
-        $objResposta->status = false;
-        header("HTTP/1.1 200");
-        header("Content-Type: application/json");
+        header("HTTP:1.1 200");
     }
+    
     echo json_encode($objResposta);
 }else{
     //retornando mensagem de token inválido caso o token não seja válido
