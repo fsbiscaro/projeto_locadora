@@ -31,7 +31,7 @@ if($meuToken->validarToken($authorization)==true){
         $objResposta->status = false;
     }else if($objUsuario->verifyEmail($objJson->email_usuario)){
         $objResposta->cod = 1;
-        $objResposta->msg = "E-mail já cadastrado!";
+        $objResposta->msg = "e-mail já cadastrado!";
         $objResposta->status = false;
     }else{
         if($objUsuario->create()==true){
