@@ -66,7 +66,6 @@ $roteador->post("/itens_emprestimo", function(){
     require_once("controle/itens_emprestimo/controle_itens_emprestimo_create.php");
 });
 
-
 $roteador->put("/itens_emprestimo/(\d+)", function($iditens_emprestimo){
     require_once("controle/itens_emprestimo/controle_itens_emprestimo_update.php");
 });
@@ -79,10 +78,10 @@ $roteador->delete("/itens_emprestimo/(\d+)", function($iditens_emprestimo){
 
 
 $roteador->get("/emprestimo_usuario", function(){
-    require_once("controle/emprestimo_usuario/controle_emprestimo_usuario_read.php");
+    require_once("controle/emprestimo_usuario/controle_emprestimo_usuario_read_all.php");
 });
 
-$roteador->get("/emprestimo_usuario/(\d+)", function($idemprestimo_usuario){
+$roteador->get("/emprestimo_usuario/(\d+)", function($id_emprestimo_usuario){
     require_once("controle/emprestimo_usuario/controle_emprestimo_usuario_read_by_id.php");
 });
 
@@ -91,11 +90,11 @@ $roteador->post("/emprestimo_usuario", function(){
 });
 
 
-$roteador->put("/emprestimo_usuario/(\d+)", function($idemprestimo_usuario){
+$roteador->put("/emprestimo_usuario/(\d+)", function($id_emprestimo_usuario){
     require_once("controle/emprestimo_usuario/controle_emprestimo_usuario_update.php");
 });
 
-$roteador->delete("/emprestimo_usuario/(\d+)", function($idemprestimo_usuario){
+$roteador->delete("/emprestimo_usuario/(\d+)", function($id_emprestimo_usuario){
     require_once("controle/emprestimo_usuario/controle_emprestimo_usuario_delete.php");
 });
 
