@@ -27,7 +27,7 @@ class Usuario implements JsonSerializable
     }
     public function create(){
         $conexao = banco::get_conexao();
-        $sql = 'INSERT INTO usuario (nome_usuario, cpf_usuario, data_nascimento_usuario, email_usuario, telefone_usuario, senha_usuario)VALUES(?,?,?,?,?,?)';
+        $sql = 'INSERT INTO usuario (nome_usuario, cpf_usuario, data_nascimento_usuario, email_usuario, telefone_usuario, senha_usuario)VALUES(?,?,?,?,?,MD5(?))';
         $prepareSQL = $conexao->prepare($sql);
         $prepareSQL->bind_param("ssssis", 
             $this->nome_usuario, 
